@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | TABS-LORE</title>
-  </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" style="width: 960px; height: 600px; background: #231F20"></canvas>
-    <script src="Build/TabsLore.loader.js"></script>
-    <script>
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/TabsLore.data.br",
-        frameworkUrl: "Build/TabsLore.framework.js.br",
-        codeUrl: "Build/TabsLore.wasm.br",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "TABS-LORE",
-        productVersion: "0.1",
-      });
-    </script>
-  </body>
+<head>
+    <title>TABS Lore</title>
+</head>
+<body onload="InitDemo();">
+  <canvas id="game surface" width = "800" height = "600">
+      Your browser does not support HTML5
+  </canvas>
+  <br> 
+  <i>TABS LORE</i>
+  <script> src="app.js"</script>
+</body>
 </html>
