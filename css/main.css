@@ -7,3 +7,130 @@ canvas
 {
     display: block;
 }
+
+#background {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    pointer-events: none;
+    border: none;
+  }
+#content {
+    padding: 3em;
+}
+
+#menu {
+    filter: blur(0px);
+}
+
+
+#readingcontent {
+   
+    position: fixed;
+    right: 0;
+    left: 0;
+    padding-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 10em;
+    width: 70%;
+    max-width: 800px;
+    text-align: left;
+    display: none;
+}
+
+b {
+    color: rgb(226, 226, 226);
+    font-family: helvetica;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    letter-spacing: 4px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+#closeReadingContent
+{
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    caret-color: rgba(0, 0, 0, 0);
+    color: rgb(226, 226, 226);
+    font-family: helvetica;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    padding: 0.4em;
+    letter-spacing: 4px;
+    line-height: 1.6;
+    text-align: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100px;
+    margin-top: 5em;
+    font-size: 18px;
+}
+
+h1 {
+    letter-spacing: 5px;
+    color: white;
+    font-family: helvetica;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+}
+
+
+h2 {
+    letter-spacing: 5px;
+    color: white;
+    font-family: helvetica;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    text-align: center;
+}
+
+#openWobbler
+{
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    caret-color: rgba(0, 0, 0, 0);
+    color: rgb(226, 226, 226);
+    font-family: helvetica;
+    font-weight: lighter;
+    font-stretch: ultra-expanded;
+    padding: 0.4em;
+    letter-spacing: 4px;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+#openWobbler:hover
+{
+    color: rgb(148, 148, 148);
+}
+
+#closeReadingContent:hover
+{
+    color: rgb(148, 148, 148);
+}
+
+#bottom
+{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: smaller;
+}

@@ -3,131 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TABS lore</title>
+  <title>TABS Lore</title>
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <iframe id="background" src="wobblerFrame.html"></iframe>
+  <div id="content">
+    <div id="menu">
+      <h1>TABS LORE</h1>
+      <button id="openWobbler">/  WOBBLERS</button>
+      <!--<b>BIG MÖRT</br>-->
+    </div>
+    <div id="readingcontent">
+      <h2>WOBBLERS</h2>
+      <b></br>
+      <b>WOBBLERS ARE THE PRIMARY INHABITANTS OF THE TABS WORLD. THEY HAVE WANDERED IT FOR EONS PAST. FROM SINCE THE AGE OF TRIBAL TO THE DARK AWAKENING.</br>
+      <b></br>
+      <b>THEIR CIVIZATIONS HAVE RISEN AND FALLEN. SPREAD OUT ACROSS THE CONTINENT, THEY THRIVE.</br>
+      <b></br>
+      <b>THE LIFETIME OF WOBBLERS ARE QUITE VARIED. IT IS THEORIZED THAT SOME WOBBLERS LIVE SO LONG BECAUSE OF CHANNELING SOME KIND OF MAGIC FROM BEYOND THE PLANE.</br>
+      <button id="closeReadingContent">CLOSE</button>
+    </div>
+  </div>
+  <script>
+    let wobblerBtn = document.getElementById('openWobbler');
+    let closeBtn = document.getElementById('closeReadingContent');
+    let readingContent = document.getElementById('readingcontent');
+    let menu = document.getElementById('menu');
 
-    <script type = "module">
-      import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js';
-      import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/GLTFLoader.js';
+    wobblerBtn.addEventListener('click', () =>
+    {
+        readingContent.style.display = 'block';
+        menu.style.filter = 'blur(4px)';
+    });
 
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(30,window.innerWidth/window.innerHeight,0.1,1000);
-      camera.position.z = 5;
-      camera.position.y = 1;
-
-      
-
-      var renderer = new THREE.WebGLRenderer({antialias: true});
-      renderer.setClearColor('#050505');
-      renderer.setSize( window.innerWidth, window.innerHeight );
-
-      document.body.appendChild( renderer.domElement );
-      window.addEventListener('resize', () => 
-      {
-        renderer.setSize( window.innerWidth, window.innerHeight );
-        camera.aspect = window.innerWidth/window.innerHeight;
-
-        camera.updateProjectionMatrix();
-        requestAnimationFrame(render);
-      })
-
-      var wobblerMesh;
-      var wobbler;
-      /*
-      var objLoader = new THREE.OBJLoader();
-      objLoader.load('models/wobbler.obj', function (object)
-      {
-        wobbler = object;
-        //wobbler.material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        scene.add(wobbler);
-      }); 
-      */
-
-      const loader = new THREE.TextureLoader();
-      const gltfLoader = new GLTFLoader();
-      gltfLoader.load('models/wobbler.gltf', (gltf) => {
-        wobbler = gltf.scene;
-        wobbler.scale.x = 100;
-        wobbler.scale.y = 100;
-        wobbler.scale.z = 100;
-
-
-        var newMat = new THREE.MeshBasicMaterial( {color: "#ffffff",} );
-
-        wobbler.traverse((o) => 
-        {
-          if(o.isMesh)o.material = newMat;
-        });
-        scene.add(wobbler);
-      });
-
-      var x;
-      var y;
-
-      var tex = loader.load('textures/cross.png');
-      tex.magFilter = THREE.NearestFilter;
-      var mat = new THREE.MeshBasicMaterial( {color: "#ffffff", map: tex, alphaMap: tex, transparent: true, opacity: 0.5} );
-
-      for (x = 0; x < 6; x++) 
-      {
-        for (y = 0; y < 5; y++) 
-        {
-          var geometry = new THREE.PlaneGeometry( .1, .1, 1 );
-          var plane = new THREE.Mesh( geometry, mat );
-          plane.position.z = -5;
-          plane.position.x = x - 2.5;
-          plane.position.y = y - 1;
-          scene.add( plane );
-        }
-      }
-
-
-      var light = new THREE.PointLight( '#ffffff', 1, 100 );
-      light.position.set( 20, 5, 10 );
-      scene.add( light );
-      
-      let then = 0;
-      var render = function(now)
-      {
-        now *= 0.001;
-
-        const delta = now - then;
-        then = now;
-
-        if(wobbler)
-        {
-          wobbler.rotation.x = -1.57 + (ypos -0.5) * 0.2;
-          wobbler.rotation.z = xpos - 0.5;
-          console.log(xpos - 0.5);
-        }
-        requestAnimationFrame(render);
-        renderer.render(scene, camera);
-      };
-
-      requestAnimationFrame(render);
-
-      var xpos;
-      var ypos;
-      function findScreenCoords(mouseEvent)
-      {
-        
-        if (mouseEvent)
-        {
-          //FireFox
-          xpos = mouseEvent.screenX/window.innerWidth;
-          ypos = mouseEvent.screenY/window.innerHeight;
-        }
-        else
-        {
-          //IE
-          xpos = window.event.screenX;
-          ypos = window.event.screenY;
-        }
-      }
-      window.onmousemove = findScreenCoords;
-
-    </script>
+    closeBtn.addEventListener('click', () =>
+    {
+      readingContent.style.display = 'none';
+      menu.style.filter = 'blur(0px)';
+    });
+  </script>
 </body>
 </html>
