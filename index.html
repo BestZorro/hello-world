@@ -53,7 +53,6 @@
         wobbler.scale.y = 100;
         wobbler.scale.z = 100;
 
-        wobbler.rotation.x = -1.57;
 
         var newMat = new THREE.MeshBasicMaterial( {color: "#ffffff",} );
 
@@ -99,13 +98,35 @@
 
         if(wobbler)
         {
-          wobbler.rotation.z += 3  * delta;
+          wobbler.rotation.x = -1.57 + (ypos -0.5) * 0.2;
+          wobbler.rotation.z = xpos - 0.5;
+          console.log(xpos - 0.5);
         }
         requestAnimationFrame(render);
         renderer.render(scene, camera);
       };
 
       requestAnimationFrame(render);
+
+      var xpos;
+      var ypos;
+      function findScreenCoords(mouseEvent)
+      {
+        
+        if (mouseEvent)
+        {
+          //FireFox
+          xpos = mouseEvent.screenX/window.innerWidth;
+          ypos = mouseEvent.screenY/window.innerHeight;
+        }
+        else
+        {
+          //IE
+          xpos = window.event.screenX;
+          ypos = window.event.screenY;
+        }
+      }
+      window.onmousemove = findScreenCoords;
 
     </script>
 </body>
