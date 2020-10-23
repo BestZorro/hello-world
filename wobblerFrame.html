@@ -266,7 +266,7 @@
         const delta = now - then;
         then = now;
         xOffsetVel += (xOffsetTarget - xOffset) * delta * 40;
-        xOffsetVel *= 0.97;
+        xOffsetVel *= 0.95;
         xOffset += xOffsetVel * delta;
         animateCamera(now);
 
