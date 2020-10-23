@@ -43,7 +43,7 @@
 
         f += pow((dot(vNormalW, viewDirectionW) + 1.0) * 0.6, 5.0);
         
-        float halftone = texture2D(halftoneTex, screenPos * 5.0).r;
+        float halftone = texture2D(halftoneTex, screenPos * 3.0).r;
         f = clamp(step(halftone, f) * 0.5 + f * 0.75, 0.0, 1.0) * 0.4;
         
         vec3 c = mix(darkC, light, f);
