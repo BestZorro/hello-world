@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+  
+  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +9,6 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
     <script type="x-shader/x-vertex" id="wobblerVertexShader">
       uniform float width;
       uniform float height;
@@ -51,7 +52,8 @@
       }
     </script>
     <script src="js/perlin.js"></script>
-    <script type = "module">
+    <script id = "frame" type = "module">
+
       import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/build/three.module.js';
       import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/GLTFLoader.js';
       noise.seed(Math.random());
@@ -81,35 +83,52 @@
 
       //#region Wobbler
       
-
-      var wobbler;
-
       const loader = new THREE.TextureLoader();
       const gltfLoader = new GLTFLoader();
-      gltfLoader.load('models/wobblerSmooth.gltf', (gltf) => {
-        wobbler = gltf.scene;
-        wobbler.scale.x = 100;
-        wobbler.scale.y = 100;
-        wobbler.scale.z = 100;
-        wobbler.rotation.x = -1.57;
 
-        var wobblerHalftoneTex = loader.load('textures/halftone.png');
-        wobblerHalftoneTex.wrapS = THREE.RepeatWrapping;
-        wobblerHalftoneTex.wrapT = THREE.RepeatWrapping;
-        var uniforms = 
-        {
-          halftoneTex: { type: "t", value: wobblerHalftoneTex },
-          width: {type: "f", value: window.innerWidth},
-          height: {type: "f", value: window.innerHeight}
-        };
-        var newMat = new THREE.ShaderMaterial( {vertexShader: document.getElementById('wobblerVertexShader').textContent, fragmentShader: document.getElementById('wobblerFragmentShader').textContent,   uniforms: uniforms} );
 
-        wobbler.traverse((o) => 
+      var currentLoadedModel;
+      var wobbler;
+      var rotation = 0;
+      var loadModel = function(modelName)
+      {
+        if(currentLoadedModel === modelName) return;
+        currentLoadedModel = modelName;
+        if(wobbler)
         {
-          if(o.isMesh)o.material = newMat;
+          scene.remove(wobbler);
+        }
+        gltfLoader.load('models/' + modelName + '.gltf', (gltf) => {
+          wobbler = gltf.scene;
+          if(modelName == 'wobblerEntry')
+          {
+            wobbler.scale.x = 100;
+            wobbler.scale.y = 100;
+            wobbler.scale.z = 100;
+          }
+        
+          wobbler.rotation.x = -1.57;
+
+          var wobblerHalftoneTex = loader.load('textures/halftone.png');
+          wobblerHalftoneTex.wrapS = THREE.RepeatWrapping;
+          wobblerHalftoneTex.wrapT = THREE.RepeatWrapping;
+          var uniforms = 
+          {
+            halftoneTex: { type: "t", value: wobblerHalftoneTex },
+            width: {type: "f", value: window.innerWidth},
+            height: {type: "f", value: window.innerHeight}
+          };
+          var newMat = new THREE.ShaderMaterial( {vertexShader: document.getElementById('wobblerVertexShader').textContent, fragmentShader: document.getElementById('wobblerFragmentShader').textContent,   uniforms: uniforms} );
+
+          wobbler.traverse((o) => 
+          {
+            if(o.isMesh)o.material = newMat;
+          });
+          scene.add(wobbler);
         });
-        scene.add(wobbler);
-      });
+      }
+      window.loadModel = loadModel;
+      loadModel('wobblerEntry');
 
       //#endregion
       
@@ -201,14 +220,38 @@
 
       //#region Animation
 
+      var xOffsetTarget = 0;
+      var xOffset = 0;
+      var center = function()
+      {
+        xOffsetTarget = 0;
+      }
+
+      window.center = center;
+
+      var uncenter = function()
+      {
+        xOffsetTarget = 1;
+      }
+
+      window.uncenter = uncenter;
+
+      function lerp(v0, v1, t) 
+      {
+        return v0*(1-t)+v1*t
+      }
+
       var animateCamera = function(now)
       {
         var xNoise = noise.simplex2(now * 0.4, 0);
         var yNoise = noise.simplex2(10, 10 + now * 0.4);
 
+
+        camera.position.z = 6 + xOffset * 4;
         camera.position.x = xNoise  * 0.05;
-        camera.position.y = 1 - yNoise * 0.05;
+        camera.position.y = xOffset * 1.5 + 1 - yNoise * 0.05;
       };
+      window.animateCamera = animateCamera;
 
       //#endregion
 
@@ -221,13 +264,15 @@
 
         const delta = now - then;
         then = now;
+        xOffset = lerp(xOffset, xOffsetTarget, delta * 6);
         animateCamera(now);
 
         if(wobbler)
         {
           //wobbler.rotation.x = -1.57 + (ypos -0.5) * 0.2;
           //wobbler.rotation.z = xpos - 0.5;
-          wobbler.rotation.z += 2 * delta;
+          rotation +=2 * delta;
+          wobbler.rotation.z = rotation;
         }
         requestAnimationFrame(render);
         renderer.render(scene, camera);
@@ -235,6 +280,11 @@
 
       //#endregion
       requestAnimationFrame(render);
+    </script>
+    <script>
+      var loadModel = null;
+      var center = null;
+      var uncenter = null;
     </script>
 </body>
 </html>

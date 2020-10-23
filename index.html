@@ -11,37 +11,68 @@
   <div id="content">
     <div id="menu">
       <h1>TABS LORE</h1>
-      <button id="openWobbler">/  WOBBLERS</button>
-      <!--<b>BIG MÖRT</br>-->
+      <button id="openWobbler" class="menuButton">/  WOBBLERS</button></br>
+      <button id="openMort" class="menuButton">/  BIG MÖRT</button>
     </div>
     <div id="readingcontent">
-      <h2>WOBBLERS</h2>
-      <b></br>
-      <b>WOBBLERS ARE THE PRIMARY INHABITANTS OF THE TABS WORLD. THEY HAVE WANDERED IT FOR EONS PAST. FROM SINCE THE AGE OF TRIBAL TO THE DARK AWAKENING.</br>
-      <b></br>
-      <b>THEIR CIVIZATIONS HAVE RISEN AND FALLEN. SPREAD OUT ACROSS THE CONTINENT, THEY THRIVE.</br>
-      <b></br>
-      <b>THE LIFETIME OF WOBBLERS ARE QUITE VARIED. IT IS THEORIZED THAT SOME WOBBLERS LIVE SO LONG BECAUSE OF CHANNELING SOME KIND OF MAGIC FROM BEYOND THE PLANE.</br>
-      <button id="closeReadingContent">CLOSE</button>
     </div>
   </div>
+
+  <script type="loreEntry" id="wobblerEntry"> 
+    <h2>WOBBLERS</h2>
+    <b></br>
+    <b>WOBBLERS ARE THE PRIMARY INHABITANTS OF THE TABS WORLD. THEY HAVE WANDERED IT FOR EONS PAST. FROM SINCE THE AGE OF TRIBAL TO THE DARK AWAKENING.</br>'
+    <b></br> 
+    <b></br> 
+    <b>THEIR CIVIZATIONS HAVE RISEN AND FALLEN. SPREAD OUT ACROSS THE CONTINENT, THEY THRIVE.</br>
+    <b></br>
+    <b>THE LIFETIME OF WOBBLERS ARE QUITE VARIED. IT IS THEORIZED THAT SOME WOBBLERS LIVE SO LONG BECAUSE OF CHANNELING SOME KIND OF MAGIC FROM BEYOND THE PLANE.</br>
+  </script>
+
+  <script type="loreEntry" id="mortEntry"> 
+    <h2>BIG MÖRT</h2>
+    <b></br>
+    <b>BIG MÖRT WAS THE PET FISH AND COMPANION OF THE ELDER GODS.</br>
+    <b></br>
+    <b>BIG MÖRT CAN NOW BE FOUND WITHIN THE DEPTHS BENETH THE FOREST CLIFFS.</br>
+    <b></br>
+    <b>BIG MÖRT'S LEFT AND RIGHT COLLAR BONE ARE MYSTERIOUSLY MISSING. WHO STOLE THEM???</br>
+  </script>
+
   <script>
     let wobblerBtn = document.getElementById('openWobbler');
-    let closeBtn = document.getElementById('closeReadingContent');
+    let mortBtn = document.getElementById('openMort');
     let readingContent = document.getElementById('readingcontent');
     let menu = document.getElementById('menu');
 
-    wobblerBtn.addEventListener('click', () =>
+    mortBtn.addEventListener('click', () =>
     {
-        readingContent.style.display = 'block';
-        menu.style.filter = 'blur(4px)';
+      showEntry('mortEntry');
     });
 
-    closeBtn.addEventListener('click', () =>
+    wobblerBtn.addEventListener('click', () =>
     {
-      readingContent.style.display = 'none';
-      menu.style.filter = 'blur(0px)';
+      showEntry('wobblerEntry');
     });
+
+    var showEntry = function(entryName)
+    {
+      document.getElementById('background').contentWindow.loadModel(entryName);
+      document.getElementById('background').contentWindow.uncenter();
+      readingContent.style.display = 'block';
+      menu.style.filter = 'blur(4px)';
+      readingContent.innerHTML = document.getElementById(entryName).textContent + '<button id="closeReadingContent">CLOSE</button>';
+       
+       let closeBtn = document.getElementById('closeReadingContent');
+       closeBtn.addEventListener('click', () =>
+       {
+        document.getElementById('background').contentWindow.center();
+         readingContent.style.display = 'none';
+         menu.style.filter = 'blur(0px)';
+       });
+    }
+
+   
   </script>
 </body>
 </html>

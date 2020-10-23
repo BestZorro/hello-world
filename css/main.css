@@ -33,7 +33,7 @@ canvas
     position: absolute;
     right: 0;
     left: 0;
-    padding-top: 80px;
+    padding-top: 40px;
     margin-right: auto;
     margin-left: auto;
     min-height: 1000px;
@@ -98,7 +98,8 @@ h2 {
     text-align: center;
 }
 
-#openWobbler
+
+.menuButton
 {
     background-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
@@ -118,7 +119,7 @@ h2 {
 }
 
 
-#openWobbler:hover
+.menuButton:hover
 {
     color: rgb(148, 148, 148);
 }
