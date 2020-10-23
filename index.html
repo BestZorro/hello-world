@@ -12,6 +12,7 @@
     <div id="menu">
       <h1>TABS LORE</h1>
       <button id="openWobbler" class="menuButton">/  WOBBLERS</button></br>
+      <button id="openTribal" class="menuButton">/  TRIBAL</button></br>
       <button id="openMort" class="menuButton">/  BIG MÖRT</button>
     </div>
     <div id="readingcontent">
@@ -35,14 +36,25 @@
     <b></br>
     <b>BIG MÖRT WAS THE PET FISH AND COMPANION OF THE ELDER GODS.</br>
     <b></br>
-    <b>BIG MÖRT CAN NOW BE FOUND WITHIN THE DEPTHS BENETH THE FOREST CLIFFS.</br>
+    <b>BIG MÖRT CAN NOW BE FOUND WITHIN THE DEEPS BENETH THE FOREST CLIFFS.</br>
     <b></br>
     <b>BIG MÖRT'S LEFT AND RIGHT COLLAR BONE ARE MYSTERIOUSLY MISSING. WHO STOLE THEM???</br>
+  </script>
+
+  <script type="loreEntry" id="tribalEntry"> 
+    <h2>TRIBAL</h2>
+    <b></br>
+    <b>BEFORE THE WOBBLERS CAME TO RULE THE CONTINENT, RAPTORS AND MAMMOTHS ROAMED THE LANDS. WITH THE HELP OF TOOLS, FIRE AND THE OCCULT THE WOBBLERS CAME TO OUTLIVE THEIR THREATS.</br>
+    <b></br>
+    <b>SOME WOBBLERS LEARNED TO CHANNEL MAGIC FROM OTHER PLANES OF EXISTENCE.</br>
+    <b></br>
+    <b>THE MOST INFAMOUS OF THEM BEING THE BONE MAGE WHO LIVED 10 WOBBLER LIFETIMES AND COULD SUMMON BONES FROM THE ABYSS.</br>
   </script>
 
   <script>
     let wobblerBtn = document.getElementById('openWobbler');
     let mortBtn = document.getElementById('openMort');
+    let tribalBtn = document.getElementById('openTribal');
     let readingContent = document.getElementById('readingcontent');
     let menu = document.getElementById('menu');
 
@@ -54,6 +66,11 @@
     wobblerBtn.addEventListener('click', () =>
     {
       showEntry('wobblerEntry');
+    });
+
+    tribalBtn.addEventListener('click', () =>
+    {
+      showEntry('tribalEntry');
     });
 
     var showEntry = function(entryName)

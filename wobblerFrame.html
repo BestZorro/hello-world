@@ -44,7 +44,7 @@
         f += pow((dot(vNormalW, viewDirectionW) + 1.0) * 0.6, 5.0);
         
         float halftone = texture2D(halftoneTex, screenPos * 3.0).r;
-        f = clamp(step(halftone, f) * 0.5 + f * 0.75, 0.0, 1.0) * 0.4;
+        f = clamp(step(halftone, f) * 0.5 + f * 0.75, 0.0, 1.0) * 0.5;
         
         vec3 c = mix(darkC, light, f);
 
@@ -248,9 +248,9 @@
         var yNoise = noise.simplex2(10, 10 + now * 0.4);
 
 
-        camera.position.z = 6;
+        camera.position.z = 6 + xOffset * 4;
         camera.position.x = xNoise  * 0.05;
-        camera.position.y = 1 - yNoise * 0.05;
+        camera.position.y = 1 - yNoise * 0.05 - xOffset * 1.5;
       };
       window.animateCamera = animateCamera;
 
