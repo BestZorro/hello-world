@@ -57,6 +57,7 @@
     let tribalBtn = document.getElementById('openTribal');
     let readingContent = document.getElementById('readingcontent');
     let menu = document.getElementById('menu');
+    let bottom = document.getElementById('bottom');
 
     mortBtn.addEventListener('click', () =>
     {
@@ -79,6 +80,7 @@
       document.getElementById('background').contentWindow.uncenter();
       readingContent.style.display = 'block';
       menu.style.filter = 'blur(4px)';
+      bottom.style.filter = 'blur(4px)';
       readingContent.innerHTML = document.getElementById(entryName).textContent + '<button id="closeReadingContent">CLOSE</button>';
        
        let closeBtn = document.getElementById('closeReadingContent');
@@ -87,6 +89,7 @@
         document.getElementById('background').contentWindow.center();
          readingContent.style.display = 'none';
          menu.style.filter = 'blur(0px)';
+         bottom.style.filter = 'blur(0px)';
        });
     }
 

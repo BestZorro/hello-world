@@ -110,7 +110,10 @@ h2 {
     {
         font-size: 0.5rem;
     }
-
+    #bottom
+    {
+        font-size: 0.3rem;
+    }
 } 
 
 .menuButton
@@ -147,5 +150,6 @@ h2 {
     position: fixed;
     bottom: 0;
     width: 100%;
-    font-size: smaller;
+    font-size: 0.6rem;
+    filter: blur(0px);
 }
