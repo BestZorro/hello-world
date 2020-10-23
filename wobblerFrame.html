@@ -36,15 +36,15 @@
       void main()
       {
         vec3 viewDirectionW = normalize(cameraPosition - vPositionW);
-        vec3 darkC = vec3(0.07843137254, 0.07843137254, 0.07843137254);
-        vec3 light = vec3(1,1,1);
+        vec3 darkC = vec3(0.00784313725, 0.02745098039, 0.05098039215) * 1.0;
+        vec3 light = vec3(.9,.7,.5);
         float f = (dot(vNormalW, vec3(1, 0, 0)) + 1.0) * 0.55;
         f = pow(f, 25.0);
 
         f += pow((dot(vNormalW, viewDirectionW) + 1.0) * 0.6, 5.0);
         
         float halftone = texture2D(halftoneTex, screenPos * 3.0).r;
-        f = clamp(step(halftone, f) * 0.5 + f * 0.75, 0.0, 1.0) * 0.5;
+        f = clamp(step(halftone, f) * 0.5 + f * 0.5, 0.0, 1.0);
         
         vec3 c = mix(darkC, light, f);
 
@@ -61,7 +61,7 @@
       //#region Setting Three JS
       var scene = new THREE.Scene();
       var renderer = new THREE.WebGLRenderer({antialias: true});
-      renderer.setClearColor('#141414');
+      renderer.setClearColor('#02070d');
       renderer.setSize( window.innerWidth, window.innerHeight );
 
       document.body.appendChild( renderer.domElement );
@@ -138,7 +138,7 @@
 
       var crossTex = loader.load('textures/cross.png');
       crossTex.magFilter = THREE.NearestFilter;
-      var mat = new THREE.MeshBasicMaterial( {color: "#ffffff", map: crossTex, alphaMap: crossTex, transparent: true, opacity: 0.15} );
+      var mat = new THREE.MeshBasicMaterial( {color: "#ffffff", map: crossTex, alphaMap: crossTex, transparent: true, opacity: 0.25} );
       var planeGeo = new THREE.PlaneGeometry( .15, .15, 1 );
       for (x = 0; x < 6; x++) 
       {
@@ -190,26 +190,27 @@
       //#endregion
       
       //#region Handle Input
-
+      var targetXPos = 0;
+      var targetYPos = 0;
       var xpos = 0;
       var ypos = 0;
-      function findScreenCoords(mouseEvent)
+      function mouseInput(mouseEvent)
       {
-        
         if (mouseEvent)
         {
           //FireFox
-          xpos = mouseEvent.pageX/window.innerWidth;
-          ypos = mouseEvent.pageY/window.innerHeight;
+          targetXPos = mouseEvent.pageX/window.innerWidth - 0.5;
+          targetYPos = mouseEvent.pageY/window.innerHeight - 0.5;
+          console.log(xpos);
         }
         else
         {
           //IE
-          xpos = window.event.x + document.body.scrollLeft - 2;
-          ypos = window.event.y + document.body.scrollTop - 2;
+          targetXPos = window.event.x + document.body.scrollLeft - 2 - 0.5;
+          targetYPos = window.event.y + document.body.scrollTop - 2- 0.5;
         }
       }
-      window.onmousemove = findScreenCoords;
+      window.mouseInput = mouseInput;
 
       document.body.addEventListener('click', () =>
       {
@@ -249,8 +250,8 @@
 
 
         camera.position.z = 6 + xOffset * 4;
-        camera.position.x = xNoise  * 0.05;
-        camera.position.y = 1 - yNoise * 0.05 - xOffset * 1.5;
+        camera.position.x = xpos * 0.25 + xNoise  * 0.05;
+        camera.position.y = ypos * -0.25 + 1 - yNoise * 0.05 - xOffset * 1.5;
       };
       window.animateCamera = animateCamera;
 
@@ -268,6 +269,10 @@
         xOffsetVel += (xOffsetTarget - xOffset) * delta * 40;
         xOffsetVel *= 0.95;
         xOffset += xOffsetVel * delta;
+
+        xpos = lerp(xpos, targetXPos, delta * 3);
+        ypos = lerp(ypos, targetYPos, delta * 3);
+
         animateCamera(now);
 
         if(wobbler)
@@ -288,6 +293,7 @@
       var loadModel = null;
       var center = null;
       var uncenter = null;
+      var mouseInput = null;
     </script>
 </body>
 </html>

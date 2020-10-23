@@ -40,16 +40,18 @@ canvas
     max-width: 800px;
     text-align: left;
     display: none;
+    padding-top: 10rem;
 }
 
 b {
-    color: rgb(226, 226, 226);
+    color: rgb(211, 175, 129);
     font-family: helvetica;
     font-weight: lighter;
     font-stretch: ultra-expanded;
     letter-spacing: 4px;
     line-height: 1.6;
     text-align: center;
+    font-size: 1rem;
 }
 
 #closeReadingContent
@@ -61,7 +63,7 @@ b {
     border-left-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
     caret-color: rgba(0, 0, 0, 0);
-    color: rgb(226, 226, 226);
+    color:rgb(233, 180, 120);
     font-family: helvetica;
     font-weight: lighter;
     font-stretch: ultra-expanded;
@@ -81,22 +83,35 @@ b {
 
 h1 {
     letter-spacing: 5px;
-    color: white;
+    color: rgb(228, 205, 155);
     font-family: helvetica;
     font-weight: lighter;
     font-stretch: ultra-expanded;
+    font-size: 2rem;
 }
 
 
 h2 {
     letter-spacing: 5px;
-    color: white;
+    color: rgb(255, 213, 149);
     font-family: helvetica;
     font-weight: lighter;
     font-stretch: ultra-expanded;
     text-align: center;
 }
 
+@media (max-width: 800px) 
+{
+    h1 
+    {
+        font-size: 0.7rem;
+    }
+    b
+    {
+        font-size: 0.5rem;
+    }
+
+} 
 
 .menuButton
 {
@@ -107,25 +122,24 @@ h2 {
     border-left-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
     caret-color: rgba(0, 0, 0, 0);
-    color: rgb(226, 226, 226);
+    color:rgb(206, 171, 124);
     font-family: helvetica;
     font-weight: lighter;
     font-stretch: ultra-expanded;
     padding: 0.4em;
     letter-spacing: 4px;
     line-height: 1.6;
-    font-size: 18px;
 }
 
 
 .menuButton:hover
 {
-    color: rgb(148, 148, 148);
+    color:rgb(255, 219, 172);
 }
 
 #closeReadingContent:hover
 {
-    color: rgb(148, 148, 148);
+    color:rgb(255, 219, 172);
 }
 
 #bottom

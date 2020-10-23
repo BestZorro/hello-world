@@ -90,6 +90,11 @@
        });
     }
 
+    function findScreenCoords(mouseEvent)
+    {
+      document.getElementById('background').contentWindow.mouseInput(mouseEvent);
+    }
+    window.onmousemove = findScreenCoords;
    
   </script>
 </body>
