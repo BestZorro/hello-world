@@ -248,9 +248,9 @@
         var yNoise = noise.simplex2(10, 10 + now * 0.4);
 
 
-        camera.position.z = 6 + xOffset * 4;
+        camera.position.z = 6;
         camera.position.x = xNoise  * 0.05;
-        camera.position.y = xOffset * 1.5 + 1 - yNoise * 0.05;
+        camera.position.y = 1 - yNoise * 0.05;
       };
       window.animateCamera = animateCamera;
 
