@@ -222,6 +222,7 @@
 
       var xOffsetTarget = 0;
       var xOffset = 0;
+      var xOffsetVel = 0;
       var center = function()
       {
         xOffsetTarget = 0;
@@ -264,7 +265,9 @@
 
         const delta = now - then;
         then = now;
-        xOffset = lerp(xOffset, xOffsetTarget, delta * 6);
+        xOffsetVel += (xOffsetTarget - xOffset) * delta * 70;
+        xOffsetVel *= 0.97;
+        xOffset += xOffsetVel * delta;
         animateCamera(now);
 
         if(wobbler)
