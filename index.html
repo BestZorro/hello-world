@@ -13,6 +13,7 @@
       <h1>TABS LORE</h1>
       <button id="openWobbler" class="menuButton">/  WOBBLERS</button></br>
       <button id="openTribal" class="menuButton">/  TRIBAL</button></br>
+      <button id="openBlackbeard" class="menuButton">/  BLACK BEARD</button></br>
       <button id="openMort" class="menuButton">/  BIG MÖRT</button>
     </div>
     <div id="readingcontent">
@@ -36,7 +37,7 @@
     <b></br>
     <b>BIG MÖRT WAS THE PET FISH AND COMPANION OF THE ELDER GODS.</br>
     <b></br>
-    <b>BIG MÖRT CAN NOW BE FOUND WITHIN THE DEEPS BENETH THE FOREST CLIFFS.</br>
+    <b>BIG MÖRT CAN NOW BE FOUND WITHIN THE DEEPS BENEATH THE FOREST CLIFFS.</br>
     <b></br>
     <b>BIG MÖRT'S LEFT AND RIGHT COLLAR BONE ARE MYSTERIOUSLY MISSING. WHO STOLE THEM???</br>
   </script>
@@ -51,10 +52,23 @@
     <b>THE MOST INFAMOUS OF THEM BEING THE BONE MAGE WHO LIVED 10 WOBBLER LIFETIMES AND COULD SUMMON BONES FROM THE ABYSS.</br>
   </script>
 
+  <script type="loreEntry" id="blackbeardEntry"> 
+    <h2>BLACKBEARD</h2>
+    <b></br>
+    <b>BLACKBEARD WAS ONE OF THE STRONGEST PIRATE CAPTAINS OF THE SEVEN COVES.</br>  
+    <b></br>
+    <b>HOWEVER, WITH A WEAK SPOT FOR TREASURE AND RICHES HE WAS BETRAYED AFTER BARLEY SURVIVING HIS SHIP SINKING FROM HIS BIGGEST HEIST YET.</br>
+    <b></br>
+    <b>POISONED BY HIS FIRST OFFICER, HE DIED SURROUNDED BY HIS RICHES. LEGEND SAYS THE GOLD IS STILL WITH HIS CORPSE.</br>
+    <b></br>
+    <b>THE ELDER GODS LATER REANIMATED HIS CORPSE GIVING HIM TWO ANCHORS FOR HANDS TO CREATE ONE OF THE MOST FEARSOME WARRIORS IN TABS.</br>
+  </script>
+
   <script>
     let wobblerBtn = document.getElementById('openWobbler');
     let mortBtn = document.getElementById('openMort');
     let tribalBtn = document.getElementById('openTribal');
+    let blackbeardBtn = document.getElementById('openBlackbeard');
     let readingContent = document.getElementById('readingcontent');
     let menu = document.getElementById('menu');
     let bottom = document.getElementById('bottom');
@@ -72,6 +86,11 @@
     tribalBtn.addEventListener('click', () =>
     {
       showEntry('tribalEntry');
+    });
+
+    blackbeardBtn.addEventListener('click', () =>
+    {
+      showEntry('blackbeardEntry');
     });
 
     var showEntry = function(entryName)
